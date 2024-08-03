@@ -1,0 +1,37 @@
+to-do :
+
+Setting up Prometheus :
+
+Download and extract the Prometheus binary from the official website.
+
+Create a prometheus.yml configuration file in the Prometheus directory:
+
+text
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'spring-boot'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['localhost:8080']
+
+Start Prometheus with ./prometheus --config.file=prometheus.yml.
+
+Setting up Grafana
+
+Download and extract the Grafana binary from the official website.
+
+Start Grafana with ./grafana-server.
+
+Open Grafana in your web browser (usually at http://localhost:3000).
+
+Add Prometheus as a data source:
+
+Go to Configuration > Data Sources
+
+Click "Add data source"
+
+Select "Prometheus" and configure the URL (e.g., http://localhost:9090)
+
+Import a Prometheus dashboard or create your own to visualize the metrics from your Spring Boot application.
